@@ -11,13 +11,14 @@ graph_simple_polysomes <- function(x, min_position){
   df <- x %>%
     dplyr::filter(position_mm >= min_position)
 
-  df %>%
+  p <- df %>%
     ggplot2::ggplot(., ggplot2::aes(position_mm, absorbance))+
     ggplot2::geom_line(size = .6)+
     ggplot2::theme_classic()+
     ggplot2::theme(text = ggplot2::element_text(size = 14))+
     ggplot2::labs(x = "Position from top of gradient (mm)",
-                  y = "Absorbance")
+                  y = "Absorbance",
+                  title = as.character(unique(df$filename)))
 
   return(p)
 }

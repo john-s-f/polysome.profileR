@@ -5,8 +5,10 @@
 #'
 #' @param x list of data frames created by using read_polysomes with lapply.
 #' @param min_position minimum position from top of gradient at which to start graphing from
+#' @param ncols number of columns you want from the facets, an integer
+#' @param scale_type one of free, free_x, free_y as a string, really you should only use free_y
 #' @export
-graph_facet_polysomes <- function(x, min_position){
+graph_facet_polysomes <- function(x, min_position, ncols, scale_type){
   # row bind the list and filter the df to a min position
   df <- dplyr::bind_rows(x) %>%
     dplyr::filter(position_mm >= min_position)
@@ -38,7 +40,7 @@ graph_facet_polysomes <- function(x, min_position){
     ggplot2::scale_color_manual(values = colors, guide = FALSE)+
     ggplot2::labs(x = "Position from top of gradient (mm)",
                   y = "Absorbance")+
-    ggplot2::facet_wrap(~filename, ncol = 2)
+    ggplot2::facet_wrap(~filename, ncol = ncols, scales = scale_type)
 
   return(p)
 }

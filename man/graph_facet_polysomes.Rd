@@ -4,12 +4,16 @@
 \alias{graph_facet_polysomes}
 \title{Graph multiple polysome profiles on separate graphs, but in one plot.}
 \usage{
-graph_facet_polysomes(x, min_position)
+graph_facet_polysomes(x, min_position, ncols, scale_type)
 }
 \arguments{
 \item{x}{list of data frames created by using read_polysomes with lapply.}
 
 \item{min_position}{minimum position from top of gradient at which to start graphing from}
+
+\item{ncols}{number of columns you want from the facets, an integer}
+
+\item{scale_type}{one of free, free_x, free_y as a string, really you should only use free_y}
 }
 \description{
 This uses facet_wrap to graph many samples on the same plot but in different panels. It takes a list of read_polysome data frames
